@@ -11,49 +11,48 @@
         body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
         .playfair { font-family: 'Playfair Display', serif; }
         .display-font { font-family: 'Montserrat', sans-serif; letter-spacing: -0.01em; }
-        .gradient-bg { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
-        .card { transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-        .portfolio-item { transition: all 0.3s ease; }
-        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-        .portfolio-overlay { opacity: 0; transition: all 0.3s ease; background: rgba(0,0,0,0.7); }
-        .tab-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
-        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .headshot-container { position: relative; width: 280px; height: 280px; border-radius: 50%; overflow: hidden; border: 8px solid white; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); background: #f3f4f6; }
-        .headshot-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); }
+
+        /* Timeline: circles and line exactly centered/aligned */
         .timeline {
             position: relative;
-            padding-left: 30px;
+            margin-left: 28px;
+            padding-left: 0;
         }
-        .timeline-item { 
-            position: relative; 
-            margin-bottom: 30px; 
-        }
-        .timeline-item:before {
+        .timeline:before {
             content: "";
             position: absolute;
-            left: -30px; /* aligns with timeline line */
-            top: 0;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #3b82f6;
-            border: 3px solid #e0e7ff;
-            z-index: 1;
-        }
-        /* Timeline vertical line (runs through the CENTER of circles and extends past last job) */
-        .timeline:after {
-            content: "";
-            position: absolute;
-            left: -23px; /* line center: -30px (circle left) + 7px (half the circle) = -23px */
+            left: 7px; /* half of 14px, so line is exactly centered through the 14px circles */
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #3b82f6;
+            background: #e0e7ff;
             z-index: 0;
+            border-radius: 2px;
         }
-        .timeline-item:after { display: none !important; }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .timeline-circle {
+            position: absolute;
+            left: 0;
+            top: 2px; /* aligns visually with the job title */
+            width: 14px;
+            height: 14px;
+            background: #e0e7ff;
+            border-radius: 50%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .timeline-circle-inner {
+            width: 6px;
+            height: 6px;
+            background: #3b82f6;
+            border-radius: 50%;
+        }
+        .timeline-content { margin-left: 32px; }
         .award-highlight {
             background: linear-gradient(90deg, #e0e7ff 0%, #c7d2fe 100%);
             border-radius: 0.75rem;
@@ -81,6 +80,11 @@
         }
         .company-name {
             font-size: 16px !important;
+        }
+        .education-timeline {
+            margin: 0;
+            padding: 0;
+            position: static;
         }
         .skill-category { transition: all 0.3s ease; }
         .skill-category:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
@@ -123,131 +127,149 @@
                     <div id="experience-tab" class="resume-tab-content">
                         <div class="timeline">
                             <div class="timeline-item">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Digital Marketing Manager</h3>
-                                        <h4 class="company-name text-indigo-600 mb-1">Bruegmann</h4>
+                                <div class="timeline-circle"><div class="timeline-circle-inner"></div></div>
+                                <div class="timeline-content">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-1">Digital Marketing Manager</h3>
+                                            <h4 class="company-name text-indigo-600 mb-1">Bruegmann</h4>
+                                        </div>
+                                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
+                                            09/2025 - Present
+                                        </span>
                                     </div>
-                                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
-                                        09/2025 - Present
-                                    </span>
-                                </div>
-                                <ul class="list-disc pl-5 text-gray-600 mt-3">
-                                    <li class="mb-2">Lead marketing strategy; translate company goals into integrated GTM programs and content</li>
-                                    <li class="mb-2">Serve as the senior marketing voice; drive alignment with Sales & Product on priorities and resourcing</li>
-                                    <li class="mb-2">Ensure positioning; ensure consistency across web, print, trade shows, and customer touchpoints</li>
-                                    <li class="mb-2">Run the digital engine: website/SEO, email, paid media, analytics with CRO and UTM governance</li>
-                                    <li class="mb-2">Stand up attribution & performance dashboards in Salesforce + Pardot</li>
-                                </ul>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Marketing Manager</h3>
-                                        <h4 class="company-name text-indigo-600 mb-1">Cybersoft Technologies</h4>
-                                    </div>
-                                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
-                                        09/2021 - 09/2025
-                                    </span>
-                                </div>
-                                <div class="award-highlight mt-3">
-                                    <span class="award-title">Unsung Hero Award</span>
-                                    <span class="award-year">(2023)</span>
-                                    <div class="award-quote">
-                                        Consistently delivers high-quality, critical work and affects highly visible operations without fanfare.
-                                    </div>
-                                </div>
-                                <div class="mb-4">
-                                    <h5 class="font-medium text-gray-700 mb-2">Accomplishments:</h5>
-                                    <ul class="list-disc pl-5 text-gray-600">
-                                        <li class="mb-2">Key contributor to brand launch at a national event, showcasing products to thousands of prospects</li>
-                                        <li class="mb-2">Established cross-departmental trade show processes, resulting in a 900% annual increase in shows</li>
-                                        <li class="mb-2">Coordinated customer events and promotions, resulting in a record-breaking 100% increase in attendance</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 class="font-medium text-gray-700 mb-2">Responsibilities:</h5>
-                                    <ul class="list-disc pl-5 text-gray-600">
-                                        <li class="mb-2">Manage nationwide marketing for 3 brands, 20+ solutions, to drive revenue generation</li>
-                                        <li class="mb-2">Develop and execute tailored campaigns per best practices and KPIs</li>
-                                        <li class="mb-2">Primary liaison for partner companies, including videographers, strategists, and advertising</li>
-                                        <li class="mb-2">Create collateral, including blogs, emails, videos, graphics, and advertisements</li>
-                                        <li class="mb-2">Manage monthly newsletter distributed to 22K+ prospects</li>
+                                    <ul class="list-disc pl-5 text-gray-600 mt-3">
+                                        <li class="mb-2">Lead marketing strategy; translate company goals into integrated GTM programs and content</li>
+                                        <li class="mb-2">Serve as the senior marketing voice; drive alignment with Sales & Product on priorities and resourcing</li>
+                                        <li class="mb-2">Ensure positioning; ensure consistency across web, print, trade shows, and customer touchpoints</li>
+                                        <li class="mb-2">Run the digital engine: website/SEO, email, paid media, analytics with CRO and UTM governance</li>
+                                        <li class="mb-2">Stand up attribution & performance dashboards in Salesforce + Pardot</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="timeline-item">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Communications Specialist</h3>
-                                        <h4 class="company-name text-indigo-600 mb-1">The Awty International School</h4>
+                                <div class="timeline-circle"><div class="timeline-circle-inner"></div></div>
+                                <div class="timeline-content">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-1">Marketing Manager</h3>
+                                            <h4 class="company-name text-indigo-600 mb-1">Cybersoft Technologies</h4>
+                                        </div>
+                                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
+                                            09/2021 - 09/2025
+                                        </span>
                                     </div>
-                                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
-                                        05/2019 - 09/2021
-                                    </span>
+                                    <div class="award-highlight mt-3">
+                                        <span class="award-title">Unsung Hero Award</span>
+                                        <span class="award-year">(2023)</span>
+                                        <div class="award-quote">
+                                            Consistently delivers high-quality, critical work and affects highly visible operations without fanfare.
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h5 class="font-medium text-gray-700 mb-2">Accomplishments:</h5>
+                                        <ul class="list-disc pl-5 text-gray-600">
+                                            <li class="mb-2">Key contributor to brand launch at a national event, showcasing products to thousands of prospects</li>
+                                            <li class="mb-2">Established cross-departmental trade show processes, resulting in a 900% annual increase in shows</li>
+                                            <li class="mb-2">Coordinated customer events and promotions, resulting in a record-breaking 100% increase in attendance</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-medium text-gray-700 mb-2">Responsibilities:</h5>
+                                        <ul class="list-disc pl-5 text-gray-600">
+                                            <li class="mb-2">Manage nationwide marketing for 3 brands, 20+ solutions, to drive revenue generation</li>
+                                            <li class="mb-2">Develop and execute tailored campaigns per best practices and KPIs</li>
+                                            <li class="mb-2">Primary liaison for partner companies, including videographers, strategists, and advertising</li>
+                                            <li class="mb-2">Create collateral, including blogs, emails, videos, graphics, and advertisements</li>
+                                            <li class="mb-2">Manage monthly newsletter distributed to 22K+ prospects</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <ul class="list-disc pl-5 text-gray-600 mt-3">
-                                    <li class="mb-2">Lead the Strategic Marketing Team, managing advertising and sponsorship opportunities</li>
-                                    <li class="mb-2">Managed and created all assets for the annual admissions campaign</li>
-                                    <li class="mb-2">Created content for website, social, events, publications, and promotional materials</li>
-                                    <li class="mb-2">Collaborated with various departments to ensure brand consistency</li>
-                                    <li class="mb-2">Emergency communications using School Messenger and other outlets</li>
-                                </ul>
                             </div>
                             <div class="timeline-item">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Arts and Entertainment Editor</h3>
-                                        <h4 class="company-name text-indigo-600 mb-1">Houstonian Newspaper</h4>
+                                <div class="timeline-circle"><div class="timeline-circle-inner"></div></div>
+                                <div class="timeline-content">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-1">Communications Specialist</h3>
+                                            <h4 class="company-name text-indigo-600 mb-1">The Awty International School</h4>
+                                        </div>
+                                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
+                                            05/2019 - 09/2021
+                                        </span>
                                     </div>
-                                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
-                                        08/2016 - 12/2018
-                                    </span>
+                                    <ul class="list-disc pl-5 text-gray-600 mt-3">
+                                        <li class="mb-2">Lead the Strategic Marketing Team, managing advertising and sponsorship opportunities</li>
+                                        <li class="mb-2">Managed and created all assets for the annual admissions campaign</li>
+                                        <li class="mb-2">Created content for website, social, events, publications, and promotional materials</li>
+                                        <li class="mb-2">Collaborated with various departments to ensure brand consistency</li>
+                                        <li class="mb-2">Emergency communications using School Messenger and other outlets</li>
+                                    </ul>
                                 </div>
-                                <ul class="list-disc pl-5 text-gray-600 mt-3">
-                                    <li class="mb-2">Managed a team of four writers and two photographers</li>
-                                    <li class="mb-2">Conducted interviews, wrote and edited features, reviews, and entertainment news</li>
-                                    <li class="mb-2">Created newspaper layouts, incorporating advertisements</li>
-                                </ul>
                             </div>
                             <div class="timeline-item">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Producer Apprentice</h3>
-                                        <h4 class="company-name text-indigo-600 mb-1">Suddenlink Cable Channel 7, SHSU</h4>
+                                <div class="timeline-circle"><div class="timeline-circle-inner"></div></div>
+                                <div class="timeline-content">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-1">Arts and Entertainment Editor</h3>
+                                            <h4 class="company-name text-indigo-600 mb-1">Houstonian Newspaper</h4>
+                                        </div>
+                                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
+                                            08/2016 - 12/2018
+                                        </span>
                                     </div>
-                                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
-                                        08/2018 - 12/2018
-                                    </span>
+                                    <ul class="list-disc pl-5 text-gray-600 mt-3">
+                                        <li class="mb-2">Managed a team of four writers and two photographers</li>
+                                        <li class="mb-2">Conducted interviews, wrote and edited features, reviews, and entertainment news</li>
+                                        <li class="mb-2">Created newspaper layouts, incorporating advertisements</li>
+                                    </ul>
                                 </div>
-                                <ul class="list-disc pl-5 text-gray-600 mt-3">
-                                    <li class="mb-2">Found newsworthy stories, wrote scripts, provided overlay images and weather graphics</li>
-                                    <li class="mb-2">Produced live broadcasts with light and sound designers, cameramen, and talent</li>
-                                </ul>
                             </div>
                             <div class="timeline-item">
-                                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-xl font-semibold text-gray-800 mb-1">Radio Talk Show Co-Host, Producer, Writer</h3>
-                                        <h4 class="company-name text-indigo-600 mb-1">90.5 the Kat Radio Station</h4>
+                                <div class="timeline-circle"><div class="timeline-circle-inner"></div></div>
+                                <div class="timeline-content">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-1">Producer Apprentice</h3>
+                                            <h4 class="company-name text-indigo-600 mb-1">Suddenlink Cable Channel 7, SHSU</h4>
+                                        </div>
+                                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
+                                            08/2018 - 12/2018
+                                        </span>
                                     </div>
-                                    <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
-                                        08/2016 - 05/2017
-                                    </span>
+                                    <ul class="list-disc pl-5 text-gray-600 mt-3">
+                                        <li class="mb-2">Found newsworthy stories, wrote scripts, provided overlay images and weather graphics</li>
+                                        <li class="mb-2">Produced live broadcasts with light and sound designers, cameramen, and talent</li>
+                                    </ul>
                                 </div>
-                                <ul class="list-disc pl-5 text-gray-600 mt-3">
-                                    <li class="mb-2">Wrote scripts for an original radio show</li>
-                                    <li class="mb-2">Performed live, original hour-long broadcasts weekly</li>
-                                    <li class="mb-2">Mentored new DJs for their station shifts</li>
-                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-circle"><div class="timeline-circle-inner"></div></div>
+                                <div class="timeline-content">
+                                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-1">Radio Talk Show Co-Host, Producer, Writer</h3>
+                                            <h4 class="company-name text-indigo-600 mb-1">90.5 the Kat Radio Station</h4>
+                                        </div>
+                                        <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm md:ml-2 mt-2 md:mt-0">
+                                            08/2016 - 05/2017
+                                        </span>
+                                    </div>
+                                    <ul class="list-disc pl-5 text-gray-600 mt-3">
+                                        <li class="mb-2">Wrote scripts for an original radio show</li>
+                                        <li class="mb-2">Performed live, original hour-long broadcasts weekly</li>
+                                        <li class="mb-2">Mentored new DJs for their station shifts</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Education Tab -->
+                    <!-- Education Tab (timeline removed) -->
                     <div id="education-tab" class="resume-tab-content hidden">
-                        <div class="timeline">
-                            <div class="timeline-item">
+                        <div class="education-timeline">
+                            <div>
                                 <div class="mb-2">
                                     <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">Sam Houston State University</span>
                                 </div>
@@ -366,6 +388,9 @@
                                     <span class="px-3 py-1 bg-white text-pink-700 rounded-full text-sm border border-pink-200">Wrike</span>
                                     <span class="px-3 py-1 bg-white text-pink-700 rounded-full text-sm border border-pink-200">Trello</span>
                                     <span class="px-3 py-1 bg-white text-pink-700 rounded-full text-sm border border-pink-200">AI Tools</span>
+                                    <span class="px-3 py-1 bg-white text-pink-700 rounded-full text-sm border border-pink-200">SmartSheet</span>
+                                    <span class="px-3 py-1 bg-white text-pink-700 rounded-full text-sm border border-pink-200">Scribe</span>
+                                    <span class="px-3 py-1 bg-white text-pink-700 rounded-full text-sm border border-pink-200">BIC Process Modeling</span>
                                 </div>
                             </div>
                         </div>
